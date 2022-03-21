@@ -1,18 +1,18 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-
+//v00egd00001l.lec-admin.dmu.ac.uk
 namespace Testing1
 {
     [TestClass]
     public class tstCustomer
     {
-        private string nName = "random name";
-        int ID = 1;
-        DateTime DOB = DateTime.Now;
-        string Address = "4 South Road London E22 5MN ";
-        string Email = "example@outlook.com";
-        bool over18 = true;
+        string CustomerName = "random name";
+        int CustomerID = 1;
+        DateTime CustomerDOB = DateTime.Now;
+        string CustomerAddress = "4 South Road London E22 5MN ";
+        string CustomerEmail = "example@outlook.com";
+        bool IsOver18 = true;
 
         [TestMethod]
         public void InstanceOK()
@@ -42,8 +42,8 @@ namespace Testing1
         {
             clsCustomer ACustomer = new clsCustomer();
             Boolean TestData = true;
-            ACustomer.Over18 = TestData;
-            Assert.AreEqual(ACustomer.Over18, TestData);
+            ACustomer.IsOver18 = TestData;
+            Assert.AreEqual(ACustomer.IsOver18, TestData);
         }
         [TestMethod]
         public void CustomerDOBOK()
