@@ -99,5 +99,26 @@ namespace ClassLibrary
             }
            
         }
+
+        public bool Find(int CustomerID)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", CustomerID);
+            DB.Execute("sproc_tblCustomer_FilterByCustomerID");
+            if (DB.Count == 1)
+            {
+            sCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+            sCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+            sCustomerDOB = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomerDOB"]);
+            sCustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
+            sCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
+            sIsOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["IsOver18"]);
+            return true;
+        }
+            else
+            {
+                return false;
+            }
     }
 }
+    }
