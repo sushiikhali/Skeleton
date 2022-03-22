@@ -40,4 +40,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsCustomer ACustomer = new clsCustomer();
+        Int32 CustomerID;
+        Boolean Found = false;
+        CustomerID = Convert.ToInt32(txtCustomerID.Text);
+        Found = ACustomer.Find(CustomerID);
+        if(Found == true)
+        {
+            txtCustomerName.Text = ACustomer.CustomerName;
+            txtCustomerDOB.Text = ACustomer.CustomerDOB.ToString();
+            txtCustomerAddress.Text = ACustomer.CustomerAddress;
+            txtCustomerEmail.Text = ACustomer.CustomerEmail;
+        }
+
+    }
 }
