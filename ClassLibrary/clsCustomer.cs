@@ -120,57 +120,5 @@ namespace ClassLibrary
                 return false;
             }
     }
-
-        public string Valid(string customerName, DateTime customerDOB, string customerAddress, string customerEmail)
-        {
-            string Error = "";
-            DateTime DateTemp;
-            if(customerName.Length == 0)
-            {
-                Error = Error + "The name entered should not be blank ";
-            }
-            if (customerName.Length > 50)
-            {
-                Error = Error + "The name entered should not exceed 50 characters";
-            }
-            try
-            {
-                DateTemp = Convert.ToDateTime(customerDOB);
-                if (DateTemp > DateTime.Now.Date.AddYears(-18).AddDays(1))
-                 {
-                    Error = Error + "You should be atleast 18 years of age";
-                 }
-                if (DateTemp < DateTime.Now.Date.AddYears(-100))
-                {
-                    Error = Error + "You should be under 100 years of age";
-                }
-            }
-
-            catch
-            {
-                Error = Error + "Please enter a valid date ";
-            }
-
-            if (customerAddress.Length == 0)
-            {
-                Error += "Customer Address should not be empty";
-            }
-            if (customerAddress.Length > 50 )
-            {
-                Error = Error + "Customer Address should not exceed 50 characters";
-            }
-            if (customerEmail.Length == 0 )
-            {
-                Error = Error + "Customer Email should not be empty";
-            }
-            if (customerEmail.Length > 50 )
-            {
-                Error = Error + "Customer Email should not exceed 50 characters";
-            }
-
-            return Error;
- 
-        }
-
-        }
+}
     }
