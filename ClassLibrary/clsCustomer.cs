@@ -121,7 +121,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string customerName, DateTime customerDOB, string customerAddress, string customerEmail)
+        public string Valid(string customerName, string customerDOB, string customerAddress, string customerEmail)
         {
             string Error = "";
             DateTime DateTemp;
