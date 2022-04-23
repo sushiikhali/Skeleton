@@ -9,7 +9,7 @@ namespace Testing1
     {
         string CustomerName = "Alex Wong";
         int CustomerID = 1;
-        DateTime CustomerDOB = DateTime.Now.AddYears(-18);
+        string CustomerDOB = DateTime.Now.AddYears(-18).ToString();
         string CustomerAddress = "159 High St Liverpool EN5 4AA";
         string CustomerEmail = "ThisisAlex@outlook.com";
         bool IsOver18 = true;
@@ -166,10 +166,11 @@ namespace Testing1
         public void ValidMethodOK()
         {
             clsCustomer ACustomer = new clsCustomer();
-            String Error = " ";
+            String Error = "";
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
-            Assert.AreEqual(Error, " ");
+            Assert.AreEqual(Error, "");
         }
+    
 
 
         [TestMethod]
@@ -249,15 +250,7 @@ namespace Testing1
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreNotEqual(Error, "");
         }
-        [TestMethod]
-        public void CustomerNameInvalidData()
-        {
-            clsCustomer ACustomer = new clsCustomer();
-            String Error = "";
-            string CustomerName = "This is not a name!";
-            Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
-            Assert.AreNotEqual(Error, "");
-        }
+
         [TestMethod]
         public void CustomerDOBExtremeMin()
         {
@@ -266,9 +259,10 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(0);
-            string DateAdded = TestDate.ToString();
+            string CustomerDOB = TestDate.ToString();
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreNotEqual(Error, "");
+         
         }
         [TestMethod]
         public void CustomerDOBMinLessOne()
@@ -278,9 +272,9 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-17);
-            string DateAdded = TestDate.ToString();
+            string CustomerDOB = TestDate.ToString();
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void CustomerDOBMin()
@@ -290,7 +284,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-18);
-            string DateAdded = TestDate.ToString();
+            string CustomerDOB = TestDate.ToString();
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreEqual(Error, "");
         }
@@ -302,7 +296,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-19);
-            string DateAdded = TestDate.ToString();
+            string CustomerDOB = TestDate.ToString();
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreEqual(Error, "");
         }
@@ -314,7 +308,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-99);
-            string DateAdded = TestDate.ToString();
+            string CustomerDOB = TestDate.ToString();
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreEqual(Error, "");
         }
@@ -326,33 +320,35 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
-            string DateAdded = TestDate.ToString();
+            string CustomerDOB = TestDate.ToString();
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void CustomerDOBMaxPlusOne()
-        {//
-            clsCustomer ACustomer = new clsCustomer();
-            String Error = "";
-            DateTime TestDate;
-            TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddYears(-101);
-            string DateAdded = TestDate.ToString();
-            Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
-            Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void CustomerDOBExtremeMax()
         {
             clsCustomer ACustomer = new clsCustomer();
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddYears(-1000);
-            string DateAdded = TestDate.ToString();
+            TestDate = TestDate.AddYears(-101);
+            string CustomerDOB = TestDate.ToString();
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreNotEqual(Error, "");
+            
+        }
+        [TestMethod]
+        public void CustomerDOBExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error ="";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-1000);
+            string CustomerDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
+            Assert.AreNotEqual(Error,"");
+            
         }
         [TestMethod]
         public void CustomerDOBMid()
@@ -362,7 +358,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-59);
-            string DateAdded = TestDate.ToString();
+            string CustomerDOB = TestDate.ToString();
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreEqual(Error, "");
         }
@@ -371,9 +367,10 @@ namespace Testing1
         {
             clsCustomer ACustomer = new clsCustomer();
             String Error = "";
-            string DateAdded = "This is not a date.";
+            string CustomerDOB = "This is not a date.";
             Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
             Assert.AreNotEqual(Error, "");
+          
         }
         [TestMethod]
         public void CustomerAddressMinLessOne()
