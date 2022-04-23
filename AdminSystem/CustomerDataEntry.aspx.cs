@@ -27,18 +27,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsCustomer ACustomer = new clsCustomer();
         // you are missing one i think its the ID
-        ACustomer.CustomerName = txtCustomerName.Text;
-        ACustomer.CustomerDOB = Convert.ToDateTime(txtCustomerDOB.Text);
-        ACustomer.CustomerAddress = txtCustomerAddress.Text;
-        ACustomer.CustomerEmail = txtCustomerEmail.Text;
-        ACustomer.IsOver18 = chkIsOver18.Checked;
-
-
-
-        Session["ACustomer"] = ACustomer;
-        Response.Redirect("CustomerViewer.aspx");
-
-        
+        string CustomerName = txtCustomerName.Text;
+        string CustomerDOB = txtCustomerDOB.Text;
+        string CustomerAddress = txtCustomerAddress.Text;
+        string CustomerEmail = txtCustomerEmail.Text;
+        string Error = "";
+        Error = ACustomer.Valid(CustomerName, CustomerDOB, CustomerAddress, CustomerEmail);
+        if (Error == "")
+        {
+            ACustomer.CustomerName = CustomerName;
+            ACustomer.CustomerDOB = Convert.ToDateTime(CustomerDOB);
+            ACustomer.CustomerAddress = CustomerAddress;
+            ACustomer.CustomerEmail = CustomerEmail;
+           Session["ACustomer"] = ACustomer;
+           Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
