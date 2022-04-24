@@ -66,5 +66,25 @@ namespace ClassLibrary
                 sThisCustomer = value;
             }
         }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@CustomerName", sThisCustomer.CustomerName);
+            DB.AddParameter("@CustomerEmail", sThisCustomer.CustomerEmail);
+            DB.AddParameter("@CustomerDOB", sThisCustomer.CustomerDOB);
+            DB.AddParameter("@CustomerAddress", sThisCustomer.CustomerAddress);
+            DB.AddParameter("@IsOver18", sThisCustomer.IsOver18);
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", sThisCustomer.CustomerID);
+            DB.Execute("sproc_tblCustomer_Delete");
+
+        }
     }
 }
