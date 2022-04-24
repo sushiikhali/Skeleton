@@ -62,6 +62,46 @@ namespace Testing1
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
 
         }
+        [TestMethod ]
+        public void AddMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.IsOver18 = true;
+            TestItem.CustomerAddress = "159 High St Liverpool EN5 4AA";
+            TestItem.CustomerDOB = DateTime.Now.AddYears(-18);
+            TestItem.CustomerEmail = "ThisisAlex@outlook.com";
+            TestItem.CustomerID = 1;
+            TestItem.CustomerName = "Alex Wong";
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+
+        }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.IsOver18 = true;
+            TestItem.CustomerAddress = "159 High St Liverpool EN5 4AA";
+            TestItem.CustomerDOB = DateTime.Now.AddYears(-18);
+            TestItem.CustomerEmail = "ThisisAlex@outlook.com";
+            TestItem.CustomerID = 1;
+            TestItem.CustomerName = "Alex Wong";
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            AllCustomers.Delete();
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+
+        }
 
     }
 }
