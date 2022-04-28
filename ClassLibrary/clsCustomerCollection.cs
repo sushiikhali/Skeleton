@@ -7,7 +7,9 @@ namespace ClassLibrary
 {
     public class clsCustomerCollection
     {
+        //prviate data member for the list
         List<clsCustomer> sCustomerList = new List<clsCustomer>();
+        //prviate data memeber for thiscustomer
         clsCustomer sThisCustomer = new clsCustomer();
         public clsCustomerCollection()
         {
@@ -86,5 +88,42 @@ namespace ClassLibrary
             DB.Execute("sproc_tblCustomer_Delete");
 
         }
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", sThisCustomer.CustomerID);
+            DB.AddParameter("@CustomerName", sThisCustomer.CustomerName);
+            DB.AddParameter("@CustomerEmail", sThisCustomer.CustomerEmail);
+            DB.AddParameter("@CustomerDOB", sThisCustomer.CustomerDOB);
+            DB.AddParameter("@CustomerAddress", sThisCustomer.CustomerAddress);
+            DB.AddParameter("@IsOver18", sThisCustomer.IsOver18);
+            DB.Execute("sproc_tblCustomer_Update");
+        }
+
+        public void ReportByAddress(string Address)
+        {
+            //connect to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //sending address parameter to the database
+            DB.AddParameter("@CustomerAddress", Address);
+            //executing stored prcoedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerAddress");
+            //populate array
+            PopulateArray(DB);
+        }
+
+        /** public void ReportByCustomerAddress(string CustomerAddress)
+         {
+             //filters the records based on a full or partial address
+             //connecting to the database
+             clsDataConnection DB = new clsDataConnection();
+             //sending the address parameter to the database
+             DB.AddParameter("CustomerAddress", CustomerAddress);
+             //executing the stored procedure 
+             DB.Execute("sproc_tblCustomer_FilterByCustomerAddress");
+             PopulateArray(DB);
+
+         }   
+        */
     }
 }
