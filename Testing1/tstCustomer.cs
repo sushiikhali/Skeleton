@@ -74,7 +74,7 @@ namespace Testing1
         public void FindMethodOK()
         {
             clsCustomer ACustomer = new clsCustomer();
-            Boolean Found = false;
+            Boolean Found = true;
             Int32 CustomerID = 1;
             Found = ACustomer.Find(CustomerID);
             Assert.IsTrue(Found);

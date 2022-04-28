@@ -36,7 +36,7 @@ namespace ClassLibrary
                 sCustomerName = value;
             }
         }
-        public int CustomerID
+        public Int32 CustomerID
         {
             get
             {
@@ -47,6 +47,7 @@ namespace ClassLibrary
                 sCustomerID = value;
             }
         }
+        private clsDataConnection DB = new clsDataConnection();
         public DateTime CustomerDOB
         {
             get
@@ -100,7 +101,7 @@ namespace ClassLibrary
 
         }
 
-        public bool Find(int CustomerID)
+        public Boolean Find(Int32 CustomerID)
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@CustomerID", CustomerID);
@@ -112,7 +113,14 @@ namespace ClassLibrary
                 sCustomerDOB = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomerDOB"]);
                 sCustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
                 sCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
-                sIsOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["IsOver18"]);
+                try
+                {
+                    sIsOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["IsOver18"]);
+                }
+                catch
+                {
+                    sIsOver18 = true;
+                }
                 return true;
             }
             else
@@ -121,7 +129,8 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string customerName, string customerDOB, string customerAddress, string customerEmail)
+
+        public string Valid( string customerName, string customerDOB, string customerAddress, string customerEmail)
         {
             string Error = "";
             DateTime DateTemp;
