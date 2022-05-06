@@ -7,8 +7,31 @@ using System.Web.UI.WebControls;
 
 public partial class _1_List : System.Web.UI.Page
 {
-    protected void Page_Load(object sender, EventArgs e)
+   protected void Page_Load(object sender,EventArgs e)
     {
+
+
+    }
+
+
+
+
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 OrderNumber;
+        if(lstOrderList.SelectedIndex !=-1)
+        {
+
+            OrderNumber = Convert.ToInt32(1stOrderList.SelectedValue);
+            Session["OrderNumber"] = OrderNumber;
+            Response.Redirect("OrderDataEntry.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to edit from the list";
+        }
+
 
     }
 }
