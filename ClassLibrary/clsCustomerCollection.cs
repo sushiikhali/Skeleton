@@ -102,28 +102,11 @@ namespace ClassLibrary
 
         public void ReportByAddress(string Address)
         {
-            //connect to the database 
-            clsDataConnection DB = new clsDataConnection();
-            //sending address parameter to the database
+            clsDataConnection DB = new clsDataConnection();         
             DB.AddParameter("@CustomerAddress", Address);
-            //executing stored prcoedure
             DB.Execute("sproc_tblCustomer_FilterByCustomerAddress");
-            //populate array
             PopulateArray(DB);
         }
 
-        /** public void ReportByCustomerAddress(string CustomerAddress)
-         {
-             //filters the records based on a full or partial address
-             //connecting to the database
-             clsDataConnection DB = new clsDataConnection();
-             //sending the address parameter to the database
-             DB.AddParameter("CustomerAddress", CustomerAddress);
-             //executing the stored procedure 
-             DB.Execute("sproc_tblCustomer_FilterByCustomerAddress");
-             PopulateArray(DB);
-
-         }   
-        */
     }
 }
